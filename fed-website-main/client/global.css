@@ -1,0 +1,127 @@
+/** @import must precede all other statements */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+
+    --card: 0 0% 4%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 0 0% 4%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 155 52% 48%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
+
+    --accent: 155 52% 48%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 155 52% 48%;
+
+    --radius: 0.5rem;
+
+    /* Brand colors */
+    --fed-green: 155 52% 48%;
+    --fed-green-rgb: 58, 185, 132;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-black text-white font-inter;
+  }
+
+  :where(p, span, li, h1, h2, h3, h4, h5, h6, a, button, label, td, th) {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  pre,
+  code {
+    overflow-x: auto;
+    white-space: pre;
+  }
+}
+
+@layer utilities {
+  .font-inter {
+    font-family: 'Inter', -apple-system, Roboto, Helvetica, sans-serif;
+  }
+
+  .btn-green-gradient {
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.50) 0%, #3AB984 100%);
+    border: 1px solid #fff;
+  }
+
+  .btn-white-gradient {
+    background: linear-gradient(270deg, rgba(0, 0, 0, 0.50) 0%, rgba(255, 255, 255, 0.50) 100%);
+    border: 1px solid rgba(0, 0, 0, 0.50);
+  }
+
+  .nav-active {
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.50) 0%, #3AB984 100%);
+    border: 1px solid #3AB984;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  }
+
+  .nav-inactive {
+    background: linear-gradient(270deg, rgba(0, 0, 0, 0.50) 0%, rgba(255, 255, 255, 0.50) 100%);
+    border: 1px solid rgba(0, 0, 0, 0.50);
+  }
+
+  .card-green-gradient {
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.50) 0%, #3AB984 100%);
+    border: 1px solid rgba(0, 0, 0, 0.50);
+  }
+
+  .card-dark-gradient {
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.50) 0%, rgba(255, 255, 255, 0.50) 100%);
+    border: 1px solid rgba(0, 0, 0, 0.50);
+  }
+
+  .hero-gradient {
+    background: radial-gradient(119.16% 119.16% at 50% 7.85%, #3AB984 0%, #000 80.13%);
+  }
+
+  .glass-card {
+    background: rgba(245, 245, 245, 0.30);
+    border-radius: 8px;
+  }
+
+  .glass-dark {
+    background: rgba(217, 217, 217, 0.20);
+    border: 1px solid rgba(0, 0, 0, 0.50);
+    border-radius: 8px;
+  }
+
+  .dot-pattern {
+    display: grid;
+    grid-template-columns: repeat(3, 10px);
+    gap: 10px;
+  }
+}
