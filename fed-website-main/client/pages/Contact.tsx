@@ -231,19 +231,18 @@ function BookingSection({
             </h2>
             <p className="text-white/80 text-base mt-2">{current.text}</p>
           </div>
-          {/* Both calendars stay mounted so the embed script can size them */}
-          {(Object.keys(calendars) as CalendarKey[]).map((key) => (
-            <iframe
-              key={key}
-              src={calendars[key].src}
-              id={calendars[key].iframeId}
-              title={calendars[key].tab}
-              allow="payment"
-              scrolling="no"
-              className={`w-full border-none overflow-hidden rounded-[4px] ${active === key ? "" : "hidden"}`}
-              style={{ minHeight: 700 }}
-            />
-          ))}
+          {/* Only the selected calendar is rendered: the GHL embed script sets
+              inline display styles, so hiding an iframe with a class doesn't stick */}
+          <iframe
+            key={active}
+            src={current.src}
+            id={current.iframeId}
+            title={current.tab}
+            allow="payment"
+            scrolling="no"
+            className="w-full border-none overflow-hidden rounded-[4px]"
+            style={{ minHeight: 700 }}
+          />
         </div>
       </div>
     </section>
