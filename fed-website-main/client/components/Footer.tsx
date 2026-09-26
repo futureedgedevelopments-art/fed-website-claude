@@ -10,6 +10,13 @@ const navLinks = [
   { label: "Contact", to: "/contact" },
 ];
 
+const socials = [
+  { label: "LinkedIn", href: SOCIAL_LINKS.linkedin },
+  { label: "Instagram", href: SOCIAL_LINKS.instagram },
+  { label: "Facebook", href: SOCIAL_LINKS.facebook },
+  { label: "TikTok", href: SOCIAL_LINKS.tiktok },
+];
+
 const services = ["Custom Solutions", "Digital Marketing", "Towing Platform", "Website Development"];
 
 export default function Footer() {
@@ -46,10 +53,13 @@ export default function Footer() {
             <li><a href="tel:+18447225678" className="hover:text-fed-green transition-colors">Phone: (844) 722-5678</a></li>
             <li><a href="mailto:info@futureedgedev.com" className="hover:text-fed-green transition-colors">Email: info@futureedgedev.com</a></li>
             <li><a href="mailto:support@futureedgedev.com" className="hover:text-fed-green transition-colors">Support: support@futureedgedev.com</a></li>
-            <li><a href={SOCIAL_LINKS.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-fed-green transition-colors">LinkedIn</a></li>
-            <li><a href={SOCIAL_LINKS.instagram} target="_blank" rel="noopener noreferrer" className="hover:text-fed-green transition-colors">Instagram</a></li>
-            <li><a href={SOCIAL_LINKS.facebook} target="_blank" rel="noopener noreferrer" className="hover:text-fed-green transition-colors">Facebook</a></li>
-            <li><a href={SOCIAL_LINKS.tiktok} target="_blank" rel="noopener noreferrer" className="hover:text-fed-green transition-colors">TikTok</a></li>
+            {socials.filter((s) => s.href).map((s) => (
+              <li key={s.label}>
+                <a href={s.href} target="_blank" rel="noopener noreferrer" className="hover:text-fed-green transition-colors">
+                  {s.label}
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
       </div>

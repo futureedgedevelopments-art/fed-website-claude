@@ -743,7 +743,7 @@ function WorkWithUs() {
 }
 /* ── Stay In The Loop ─────────────────────────────────── */
 const socials = [
-  { name: "INSTAGRAM", handle: "@futureedgdev", desc: "Behind the scenes, client spotlights, and team updates.", Icon: Instagram, href: SOCIAL_LINKS.instagram },
+  { name: "INSTAGRAM", handle: "@futureedgedev", desc: "Behind the scenes, client spotlights, and team updates.", Icon: Instagram, href: SOCIAL_LINKS.instagram },
   { name: "LINKEDIN", handle: "Future Edge Developments", desc: "Industry insights, company news, and professional updates.", Icon: Linkedin, href: SOCIAL_LINKS.linkedin },
   { name: "FACEBOOK", handle: "Future Edge Developments", desc: "Client features, business tips, and company updates delivered straight to your feed.", Icon: Facebook, href: SOCIAL_LINKS.facebook },
   { name: "TIKTOK", handle: "@futureedgedevelopments", desc: "Quick tips, tech breakdowns, and a look at how we build growth systems for real businesses.", Icon: Headphones, href: SOCIAL_LINKS.tiktok },
@@ -762,7 +762,7 @@ function StayInLoop() {
 
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-10 lg:gap-16 items-start">
           <ul className="flex flex-col gap-3">
-            {socials.map(({ name, handle, desc, Icon, href }) => (
+            {socials.filter((s) => s.href).map(({ name, handle, desc, Icon, href }) => (
               <li key={name}>
                 <a
                   href={href}
