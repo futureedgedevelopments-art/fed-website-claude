@@ -3,11 +3,15 @@ import { Link } from "react-router-dom";
 import {
   BarChart3,
   Bot,
+  Facebook,
   Headphones,
+  Instagram,
   Linkedin,
+  Mail,
   Palette,
   Paperclip,
   PenTool,
+  Phone,
   PhoneCall,
   Wrench,
 } from "lucide-react";
@@ -20,6 +24,10 @@ import ericPresenting from "@/assets/eric-presenting.jpg";
 
 // Businesses served, per the Clients database in Notion (29 as of Sep 2026)
 const BUSINESSES_SERVED = "25+";
+
+// Meet the Team (named bios) is built but hidden for now; while it's off,
+// the founder section and the generalized team cards show instead.
+const SHOW_TEAM = false;
 
 /* ── Hero ─────────────────────────────────────────────── */
 function AboutHero() {
@@ -249,6 +257,104 @@ function HowWeWork() {
     </section>
   );
 }
+/* ── Meet The Team ────────────────────────────────────── */
+const team = [
+  {
+    name: "ERIC SULLIVAN",
+    role: "Founder & CEO",
+    img: "https://api.builder.io/api/v1/image/assets/TEMP/cf7f9140947411eaea149ffbac597c1eb34b3fb7?width=617",
+    bio: "The engine behind our software and strategy, Eric is the one translating big client needs into smooth digital systems. Whether it's building automated pipelines, troubleshooting tech, or mapping out full-scale brand growth, Eric's always two steps ahead. He's the guy clients talk to when they want real solutions — not fluff — and he makes sure every site, system, and automation runs with purpose.",
+  },
+  {
+    name: "MATT BOEN",
+    role: "Sales & Client Growth Lead",
+    img: "https://api.builder.io/api/v1/image/assets/TEMP/179de4cc0f1a1322fe433a38c26a372de0062425?width=617",
+    bio: "Matt's the go-to guy when it comes to connecting with clients and understanding what they truly need. From discovery calls to long-term support, he's all about making sure small businesses feel seen, heard, and supported. Whether he's coming up with marketing ideas or helping a client understand how to scale, Matt brings energy, clarity, and a relentless drive to help every partner win.",
+  },
+  {
+    name: "BRENDAN FOLEY",
+    role: "Automation Systems Architect",
+    img: "https://api.builder.io/api/v1/image/assets/TEMP/dde6d167bb5a8c638c5b50c38ed494dd038b17d8?width=617",
+    bio: "Brendan builds the systems that run behind the scenes. Pipelines, automations, integrations, invoicing workflows — if it needs to move data without someone manually doing it, that's his lane. With a background in design and computer science, he brings a rare blend of technical problem-solving and visual thinking to every build. Brendan is the reason our clients' backend operations actually work how they should.",
+  },
+  {
+    name: "PETER SULLIVAN",
+    role: "Operations & Analytics",
+    img: "https://api.builder.io/api/v1/image/assets/TEMP/b8a756ed2acbfbb568c33d8ce74f739c5729a4c1?width=617",
+    bio: "Peter joined FED with a Master's in Business Analytics and immediately started making an impact — stepping in to troubleshoot live systems and support backend operations from day one. He brings analytical rigor to how FED documents, organizes, and optimizes its internal and client-facing processes. As FED scales, Peter ensures the operational foundation keeps pace with growth.",
+  },
+  {
+    name: "JOEY LeCLAIRE",
+    role: "Business Development",
+    img: "https://api.builder.io/api/v1/image/assets/TEMP/9ba9eaf4953e6be60f1fa3aec066360c9d3e3645?width=617",
+    bio: "Joey focuses on identifying and connecting with businesses that are ready to stop leaving growth on the table. With a background in B2B outreach and lead qualification, he knows how to cut through the noise and start real conversations with decision-makers. Joey's job is simple: find the right businesses, ask the right questions, and get them in front of the FED team.",
+  },
+  {
+    name: "WOLF SAMSON",
+    role: "Lead Creative Strategist",
+    img: "https://api.builder.io/api/v1/image/assets/TEMP/ba18c364e91d5099b97080d68fcd2a27447ab43f?width=617",
+    bio: "Wolf is the creative engine behind FED's client-facing work. From brand identity and website builds to content strategy and marketing campaigns, he turns business goals into visual systems that convert. He doesn't just make things look good — he thinks about positioning, messaging, and the UX behind every design decision. When a client's brand needs to compete, Wolf is the one making that happen.",
+  },
+  {
+    name: "COLE SMITH",
+    role: "Business Development",
+    img: "https://api.builder.io/api/v1/image/assets/TEMP/1ea4500661e66b677f1285dd06296584bcf67765?width=617",
+    bio: "Cole specializes in direct outreach — showing up, building relationships, and creating opportunities through real engagement with business owners. He brings energy and persistence to every conversation, and he's often the first person a future client meets from FED.",
+  },
+  {
+    name: "MICHAEL SULLIVAN",
+    role: "Media Specialist & Photography",
+    img: "https://api.builder.io/api/v1/image/assets/TEMP/343b722170147678ceec77e2059dd8731ac1146d?width=617",
+    bio: "Michael captures the moments that bring our clients' brands to life — behind the lens and in the edit bay. Whether it's shooting content for a new site, filming testimonials, or producing sleek visuals for social campaigns, he makes sure every story looks as good as it sounds. With an eye for detail and a knack for timing, Michael helps transform everyday businesses into standout brands on screen.",
+  },
+];
+
+function MeetTheTeam() {
+  return (
+    <section
+      className="relative w-full py-16 lg:py-24"
+      style={{ background: "linear-gradient(180deg, #000 0%, #09271A 50%, #000 100%)" }}
+    >
+      <div className="max-w-[1440px] mx-auto px-6 lg:px-16">
+        <h2 className="text-white text-center font-bold text-2xl lg:text-[36px] mb-12 lg:mb-16">
+          MEET THE TEAM
+        </h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 max-w-[1100px] mx-auto">
+          {team.map((m) => (
+            <div
+              key={m.name}
+              className="rounded-[8px] p-5 flex flex-col items-center text-center gap-3"
+              style={{
+                background: "linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(9,39,26,0.6) 100%)",
+                border: "1px solid rgba(119,199,157,0.5)",
+                boxShadow: "0 0 0 1px rgba(119,199,157,0.15), 0 0 24px rgba(58,185,132,0.15)",
+              }}
+            >
+              <div className="flex flex-col items-center gap-0.5">
+                <h3 className="text-white font-bold text-[18px] leading-tight tracking-wide">{m.name}</h3>
+                <p className="text-fed-green italic font-medium text-sm">{m.role}</p>
+              </div>
+              <img
+                src={m.img}
+                alt={m.name}
+                className="w-full max-w-[280px] aspect-[3/4] object-cover rounded-[6px]"
+                style={{ border: "1px solid rgba(119,199,157,0.4)" }}
+              />
+              <p className="text-white/85 text-xs leading-[1.5] max-w-[320px]">{m.bio}</p>
+              <div className="flex items-center justify-center gap-2 w-full pt-1">
+                <a href="#" aria-label="LinkedIn" className="flex items-center justify-center h-9 w-12 rounded-[4px] text-fed-green hover:bg-fed-green/10 transition" style={{ border: "1px solid rgba(119,199,157,0.5)" }}><Linkedin size={16} /></a>
+                <a href="tel:+18447225678" aria-label="Phone" className="flex items-center justify-center h-9 w-12 rounded-[4px] text-fed-green hover:bg-fed-green/10 transition" style={{ border: "1px solid rgba(119,199,157,0.5)" }}><Phone size={16} /></a>
+                <a href="mailto:info@futureedgedev.com" aria-label="Email" className="flex items-center justify-center h-9 w-12 rounded-[4px] text-fed-green hover:bg-fed-green/10 transition" style={{ border: "1px solid rgba(119,199,157,0.5)" }}><Mail size={16} /></a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ── Meet the Founder ─────────────────────────────────── */
 function FounderSection() {
   return (
@@ -633,6 +739,71 @@ function WorkWithUs() {
     </section>
   );
 }
+/* ── Stay In The Loop ─────────────────────────────────── */
+const socials = [
+  { name: "INSTAGRAM", handle: "@futureedgdev", desc: "Behind the scenes, client spotlights, and team updates.", Icon: Instagram, href: "https://instagram.com" },
+  { name: "LINKEDIN", handle: "Future Edge Developments", desc: "Industry insights, company news, and professional updates.", Icon: Linkedin, href: "https://linkedin.com" },
+  { name: "FACEBOOK", handle: "Future Edge Developments", desc: "Client features, business tips, and company updates delivered straight to your feed.", Icon: Facebook, href: "https://facebook.com" },
+  { name: "TIKTOK", handle: "@futureedgedevelopments", desc: "Quick tips, tech breakdowns, and a look at how we build growth systems for real businesses.", Icon: Headphones, href: "https://tiktok.com" },
+];
+
+function StayInLoop() {
+  return (
+    <section className="bg-black py-16 lg:py-24">
+      <div className="max-w-[1200px] mx-auto px-6 lg:px-16">
+        <div className="text-center mb-10 lg:mb-14">
+          <h2 className="text-white font-bold text-2xl lg:text-[36px] leading-[1.4] mb-4">STAY IN THE LOOP</h2>
+          <p className="text-fed-green font-medium text-base lg:text-[20px] leading-[1.4] max-w-[830px] mx-auto">
+            Follow along as we build, share insights, and spotlight the businesses we work with.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-10 lg:gap-16 items-start">
+          <ul className="flex flex-col gap-3">
+            {socials.map(({ name, handle, desc, Icon, href }) => (
+              <li key={name}>
+                <a
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-start gap-3 rounded-[6px] p-2 -mx-2 hover:bg-white/5 transition-colors"
+                >
+                  <span
+                    className="flex items-center justify-center h-9 w-9 rounded-[6px] text-fed-green shrink-0 mt-0.5 group-hover:bg-fed-green/10 transition-colors"
+                    style={{ border: "1px solid rgba(119,199,157,0.5)" }}
+                  >
+                    <Icon size={16} />
+                  </span>
+                  <span className="leading-[1.4]">
+                    <span className="text-fed-green font-semibold text-sm">{name}</span>
+                    <span className="text-white font-medium text-sm"> {handle}</span>
+                    <span className="text-white/80 font-normal italic text-xs"> — {desc}</span>
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+
+          <form
+            onSubmit={(e) => e.preventDefault()}
+            className="flex flex-col gap-3 lg:items-end lg:min-w-[220px]"
+          >
+            <button
+              type="submit"
+              className="inline-flex items-center justify-center h-[44px] px-6 rounded-[8px] text-white font-semibold text-base btn-green-gradient hover:opacity-90 transition w-full lg:w-[200px]"
+            >
+              Our Newsletter →
+            </button>
+            <p className="text-white/85 italic font-light text-xs leading-[1.4] lg:text-right max-w-[200px]">
+              Get growth tips, automation strategies, and FED updates straight to your inbox.
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ── Closing CTA ──────────────────────────────────────── */
 function ClosingCTA() {
   return (
@@ -691,11 +862,18 @@ export default function About() {
         <SetsApart />
         <Mission />
         <HowWeWork />
-        <FounderSection />
-        <TeamSection />
+        {SHOW_TEAM ? (
+          <MeetTheTeam />
+        ) : (
+          <>
+            <FounderSection />
+            <TeamSection />
+          </>
+        )}
         <StoriesSection />
         <IndustriesSection />
         <WorkWithUs />
+        <StayInLoop />
         <ClosingCTA />
       </main>
     </div>
