@@ -1,15 +1,16 @@
-# Netlify reads the repo-root netlify.toml (which sets base = "fed-website-main").
-# Keep this file in sync with it for anyone deploying from this folder directly.
-
+# The site lives in fed-website-main/, so point Netlify there.
+# Paths below (publish, functions) are relative to the base directory.
+# Keep in sync with fed-website-main/netlify.toml.
 [build]
+base = "fed-website-main"
 command = "npm run build:client"
 functions = "netlify/functions"
 publish = "dist/spa"
 
-
 [functions]
 external_node_modules = ["express"]
 node_bundler = "esbuild"
+
 [[redirects]]
 force = true
 from = "/api/*"
