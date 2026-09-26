@@ -12,3 +12,10 @@ force = true
 from = "/api/*"
 status = 200
 to = "/.netlify/functions/api/:splat"
+
+# SPA fallback: serve index.html for client-side routes like /contact
+# (not forced, so real files in dist/spa are still served first)
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200
