@@ -22,7 +22,7 @@ const calendars = {
   strategy: {
     tab: "Free Strategy Call",
     title: "BOOK YOUR FREE STRATEGY CALL",
-    text: "Pick a time that works for you. We'll map out where your time is going and what we'd automate first.",
+    text: "Pick a time for a free 30-minute call. We'll map out where your time is going and what we'd automate first.",
     src: "https://api.leadconnectorhq.com/widget/booking/Sl5NL7IdJJsnQ4zlwjga",
     iframeId: "DMzg7EzQFyaNQcB2z7Jx_1790434869135",
   },
@@ -86,6 +86,9 @@ function ContactForm() {
       <h2 className="text-white font-bold text-2xl lg:text-[32px] leading-[1.3]">
         SEND US A MESSAGE
       </h2>
+      <p className="text-white/80 text-base -mt-2">
+        Fill this out and we'll get back to you within 24 hours.
+      </p>
       <iframe
         src={`https://api.leadconnectorhq.com/widget/form/${CONTACT_FORM_ID}`}
         id={`inline-${CONTACT_FORM_ID}`}
@@ -130,7 +133,7 @@ function ContactInfo({ onBook }: { onBook: (key: CalendarKey) => void }) {
           PREFER TO TALK IT THROUGH?
         </h3>
         <p className="text-white text-sm lg:text-base leading-[1.5]">
-          Book a free strategy call. We'll map out where your time
+          Book a free 30-minute strategy call. We'll map out where your time
           is going and what we'd automate first.
         </p>
         <button
@@ -304,11 +307,11 @@ const faqs = [
   },
   {
     q: "How quickly will I hear back?",
-    a: `Fast. Every message and booking goes straight to our team, and we'll get back to you as soon as we can. Need something right now? Call us at ${CONTACT_PHONE}.`,
+    a: `We reply to every message within 24 hours. Need something right now? Call us at ${CONTACT_PHONE}.`,
   },
   {
     q: "Is the strategy call really free?",
-    a: "Yes. It's a no-pressure conversation to see where automation can make the biggest difference for you. If we're not a fit, we'll tell you.",
+    a: "Yes. It's a free 30-minute, no-pressure conversation to see where automation can make the biggest difference for you. If we're not a fit, we'll tell you.",
   },
   {
     q: "Do I need to be technical?",
