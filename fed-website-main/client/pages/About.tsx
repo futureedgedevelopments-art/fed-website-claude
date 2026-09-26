@@ -66,7 +66,7 @@ function AboutHero() {
         <div className="mt-16 flex flex-col items-end gap-6 lg:gap-8 text-right">
           <div className="text-fed-green font-bold text-2xl lg:text-[32px]">Trusted by {BUSINESSES_SERVED} businesses</div>
           <p className="text-white text-base lg:text-lg leading-[1.6] max-w-[860px]">
-            Future Edge Developments was founded on a simple belief — that every business, regardless of size, deserves a powerful online presence without the chaos of juggling a dozen different tools. We're a team of developers, designers, and digital strategists who build smart, all-in-one websites powered by AI automation, lead generation, and real-time mobile control. We don't just build websites. We build growth engines.
+            Future Edge Developments builds the systems behind service businesses: the towing companies, landscapers, detailers, and crews who are great at the work and tired of the paperwork. We swap the spreadsheets, sticky notes, and five disconnected apps for one setup built around how you actually run. The website is where it starts. The system behind it is what keeps you growing.
           </p>
         </div>
       </div>
@@ -98,14 +98,14 @@ function SetsApart() {
           </h2>
           <GreenDots variant="6" />
           <p className="text-white/90 text-base lg:text-lg leading-[1.6] max-w-[480px]">
-            Most agencies hand you a website and walk away. We build the entire system around it — the automations, the lead tools, the CRM, the strategy — so your business keeps growing long after launch.
+            Most agencies hand you a website and walk away. We build everything around it: the CRM, the automations, the lead follow-up, and the strategy. Your business keeps growing long after launch day.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-2">
             {[
-              { title: BUSINESSES_SERVED, subtitle: "BUSINESSES SERVED", desc: "From local startups to scaling SMBs, we've helped clients across industries transform their digital presence." },
-              { title: "All-in-One Platform", desc: "No more juggling tools. Everything — your website, CRM, automations, and analytics — lives in one place." },
-              { title: "AI-Powered from Day One", desc: "Every site we build comes with smart automations, chatbot workflows, and follow-up sequences built in — not bolted on." },
+              { title: BUSINESSES_SERVED, subtitle: "BUSINESSES SERVED", desc: "From brand-new startups to crews with years in the field, across towing, landscaping, detailing, and a dozen other industries." },
+              { title: "All-in-One Platform", desc: "Your website, CRM, automations, and reporting in one place. No more logging into five apps to run one job." },
+              { title: "Automation Built In", desc: "Follow-ups, review requests, and reminders are part of the build from day one, not something bolted on later." },
             ].map((c) => (
               <div
                 key={c.title}
@@ -201,12 +201,12 @@ function Mission() {
           }}
         >
           <p className="text-white text-sm lg:text-base leading-[1.55]">
-            We exist to level the playing field. Small and mid-sized businesses deserve the same powerful tools, systems, and digital presence that big companies have — without the complexity, the bloat, or the agency runaround. Future Edge was built to make that possible. We combine smart website design, AI automation, and real strategy into one system so that our clients can focus on what they actually do best — running their business.
+            We exist to level the playing field. Small and mid-sized businesses deserve the same tools and systems the big companies run on, without the complexity, the bloat, or the agency runaround. That's why Future Edge exists. We put the website, the automation, and the strategy into one system so owners can get back to running their business.
           </p>
         </div>
 
         <p className="text-black italic text-xs lg:text-sm">
-          Fueling business growth with innovation. Your catalyst for success.
+          Built for the businesses that keep things running.
         </p>
         <img
           src="https://api.builder.io/api/v1/image/assets/TEMP/2411a846fc07431b68b5eab2c81595416dd022d0?width=228"
@@ -230,9 +230,9 @@ function Mission() {
 }
 /* ── How We Work (3 principles) ───────────────────────── */
 const principles = [
-  { num: "1", title: "Systems Before Design", desc: "We don't start with how it looks — we start with how it works. Every website we build is engineered around a growth system first, then wrapped in a design that converts." },
-  { num: "2", title: "Transparent by Default", desc: "No smoke and mirrors. You'll always know what we're building, why we're building it, and what results to expect. We communicate clearly and move fast." },
-  { num: "3", title: "Built to Scale With You", desc: "We're not here for a one-time project. The tools, automations, and strategies we put in place are designed to grow as your business grows — so you never outgrow what we built." },
+  { num: "1", title: "Systems Before Design", desc: "We figure out how your business works before we pick a single color. The system comes first, then a design that turns visitors into booked jobs." },
+  { num: "2", title: "Transparent by Default", desc: "No smoke and mirrors. You'll always know what we're building, why we're building it, and what to expect from it. Clear answers, fast turnarounds." },
+  { num: "3", title: "Built to Scale With You", desc: "We're not here for one project and a handshake. Everything we set up is built to grow with your business, so you never outgrow it." },
 ];
 
 function HowWeWork() {
@@ -263,7 +263,7 @@ const team = [
     name: "ERIC SULLIVAN",
     role: "Founder & CEO",
     img: "https://api.builder.io/api/v1/image/assets/TEMP/cf7f9140947411eaea149ffbac597c1eb34b3fb7?width=617",
-    bio: "The engine behind our software and strategy, Eric is the one translating big client needs into smooth digital systems. Whether it's building automated pipelines, troubleshooting tech, or mapping out full-scale brand growth, Eric's always two steps ahead. He's the guy clients talk to when they want real solutions — not fluff — and he makes sure every site, system, and automation runs with purpose.",
+    bio: "Eric turns what a client actually needs into systems that run. Automated pipelines, troubleshooting, full-scale growth plans: if it keeps a business moving, he has already mapped it out. Clients call Eric when they want real answers, not fluff, and he makes sure every site, system, and automation earns its place.",
   },
   {
     name: "MATT BOEN",
@@ -275,13 +275,13 @@ const team = [
     name: "BRENDAN FOLEY",
     role: "Automation Systems Architect",
     img: "https://api.builder.io/api/v1/image/assets/TEMP/dde6d167bb5a8c638c5b50c38ed494dd038b17d8?width=617",
-    bio: "Brendan builds the systems that run behind the scenes. Pipelines, automations, integrations, invoicing workflows — if it needs to move data without someone manually doing it, that's his lane. With a background in design and computer science, he brings a rare blend of technical problem-solving and visual thinking to every build. Brendan is the reason our clients' backend operations actually work how they should.",
+    bio: "Brendan builds the systems that run behind the scenes. Pipelines, automations, integrations, invoicing workflows. If data needs to move without someone doing it by hand, that's his lane. With a background in design and computer science, he brings a rare blend of technical problem-solving and visual thinking to every build. Brendan is the reason our clients' backend operations actually work how they should.",
   },
   {
     name: "PETER SULLIVAN",
     role: "Operations & Analytics",
     img: "https://api.builder.io/api/v1/image/assets/TEMP/b8a756ed2acbfbb568c33d8ce74f739c5729a4c1?width=617",
-    bio: "Peter joined FED with a Master's in Business Analytics and immediately started making an impact — stepping in to troubleshoot live systems and support backend operations from day one. He brings analytical rigor to how FED documents, organizes, and optimizes its internal and client-facing processes. As FED scales, Peter ensures the operational foundation keeps pace with growth.",
+    bio: "Peter joined FED with a Master's in Business Analytics and got to work right away, troubleshooting live systems and supporting backend operations from day one. He brings analytical rigor to how FED documents, organizes, and optimizes its internal and client-facing processes. As FED scales, Peter ensures the operational foundation keeps pace with growth.",
   },
   {
     name: "JOEY LeCLAIRE",
@@ -293,19 +293,19 @@ const team = [
     name: "WOLF SAMSON",
     role: "Lead Creative Strategist",
     img: "https://api.builder.io/api/v1/image/assets/TEMP/ba18c364e91d5099b97080d68fcd2a27447ab43f?width=617",
-    bio: "Wolf is the creative engine behind FED's client-facing work. From brand identity and website builds to content strategy and marketing campaigns, he turns business goals into visual systems that convert. He doesn't just make things look good — he thinks about positioning, messaging, and the UX behind every design decision. When a client's brand needs to compete, Wolf is the one making that happen.",
+    bio: "Wolf is the creative engine behind FED's client-facing work. From brand identity and website builds to content strategy and marketing campaigns, he turns business goals into visual systems that convert. Looking good is the starting point. He also thinks about positioning, messaging, and the UX behind every design decision. When a client's brand needs to compete, Wolf is the one making that happen.",
   },
   {
     name: "COLE SMITH",
     role: "Business Development",
     img: "https://api.builder.io/api/v1/image/assets/TEMP/1ea4500661e66b677f1285dd06296584bcf67765?width=617",
-    bio: "Cole specializes in direct outreach — showing up, building relationships, and creating opportunities through real engagement with business owners. He brings energy and persistence to every conversation, and he's often the first person a future client meets from FED.",
+    bio: "Cole handles direct outreach: showing up, building relationships, and creating opportunities through real engagement with business owners. He brings energy and persistence to every conversation, and he's often the first person a future client meets from FED.",
   },
   {
     name: "MICHAEL SULLIVAN",
     role: "Media Specialist & Photography",
     img: "https://api.builder.io/api/v1/image/assets/TEMP/343b722170147678ceec77e2059dd8731ac1146d?width=617",
-    bio: "Michael captures the moments that bring our clients' brands to life — behind the lens and in the edit bay. Whether it's shooting content for a new site, filming testimonials, or producing sleek visuals for social campaigns, he makes sure every story looks as good as it sounds. With an eye for detail and a knack for timing, Michael helps transform everyday businesses into standout brands on screen.",
+    bio: "Michael captures the moments that bring our clients' brands to life, behind the lens and in the edit bay. Whether it's shooting content for a new site, filming testimonials, or producing sleek visuals for social campaigns, he makes sure every story looks as good as it sounds. With an eye for detail and a knack for timing, Michael helps transform everyday businesses into standout brands on screen.",
   },
 ];
 
@@ -390,7 +390,7 @@ function FounderSection() {
             <p className="text-fed-green italic font-medium text-base">Founder &amp; CEO</p>
           </div>
           <p className="text-white/85 text-base leading-[1.7]">
-            The engine behind our software and strategy, Eric is the one translating big client needs into smooth digital systems. Whether it's building automated pipelines, troubleshooting tech, or mapping out full-scale brand growth, Eric's always two steps ahead. He's the guy clients talk to when they want real solutions — not fluff — and he makes sure every site, system, and automation runs with purpose.
+            Eric turns what a client actually needs into systems that run. Automated pipelines, troubleshooting, full-scale growth plans: if it keeps a business moving, he has already mapped it out. Clients call Eric when they want real answers, not fluff, and he makes sure every site, system, and automation earns its place.
           </p>
           <a
             href="https://linkedin.com/in/eric-sullivan2113/"
@@ -440,7 +440,7 @@ function TeamSection() {
           A SMALL TEAM THAT BUILDS BIG SYSTEMS
         </h2>
         <p className="text-white/80 text-base lg:text-lg text-center max-w-[720px] mx-auto mt-4 mb-10 lg:mb-14">
-          A hands-on crew covering every piece of the build — you work directly
+          A hands-on crew covering every piece of the build. You work directly
           with the people putting your systems together.
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 justify-items-center">
@@ -468,7 +468,7 @@ const stories = [
   {
     industry: "Landscaping",
     problem: "Driving out to look at every lead before he could even give a quote.",
-    built: "Leads now qualify themselves by text — property size, service type, and photos — before he picks up the phone. Estimates, invoicing, and review requests run on autopilot.",
+    built: "Leads now answer a few texts about property size, service type, and photos before he ever picks up the phone. Estimates, invoicing, and review requests run on their own.",
   },
   {
     industry: "Towing",
@@ -478,7 +478,7 @@ const stories = [
   {
     industry: "Mobile Detailing",
     problem: "The owner was stuck chasing quotes and paperwork instead of growing his team.",
-    built: "A custom quote calculator and a client journey that runs itself — from the first quote request to the final review request.",
+    built: "A custom quote calculator and a client journey that runs itself, from the first quote request to the final review request.",
   },
   {
     industry: "High School Boosters",
@@ -488,7 +488,7 @@ const stories = [
   {
     industry: "Fraternity Chapter",
     problem: "Everything reset every year when the exec board turned over.",
-    built: "A chapter management system — events, alumni outreach, attendance, documents — with a leadership handoff built in.",
+    built: "A chapter management system for events, alumni outreach, attendance, and documents, with a leadership handoff built in.",
   },
   {
     industry: "Junk Removal",
@@ -777,7 +777,7 @@ function StayInLoop() {
                   <span className="leading-[1.4]">
                     <span className="text-fed-green font-semibold text-sm">{name}</span>
                     <span className="text-white font-medium text-sm"> {handle}</span>
-                    <span className="text-white/80 font-normal italic text-xs"> — {desc}</span>
+                    <span className="text-white/80 font-normal italic text-xs"> · {desc}</span>
                   </span>
                 </a>
               </li>
@@ -795,7 +795,7 @@ function StayInLoop() {
               Our Newsletter →
             </button>
             <p className="text-white/85 italic font-light text-xs leading-[1.4] lg:text-right max-w-[200px]">
-              Get growth tips, automation strategies, and FED updates straight to your inbox.
+              Practical automation and growth tips, plus FED updates, straight to your inbox.
             </p>
           </form>
         </div>

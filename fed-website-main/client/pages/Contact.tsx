@@ -71,7 +71,7 @@ function ContactHero() {
           </div>
           <p className="text-white text-base lg:text-xl font-medium leading-[1.4] max-w-[640px]">
             Tell us where your business is getting stuck. We'll show you
-            exactly what we'd automate first — no fluff, no pressure.
+            exactly what we'd automate first. No fluff, no pressure.
           </p>
         </div>
       </div>
@@ -261,7 +261,7 @@ const steps = [
   },
   {
     title: "We Build",
-    text: "We design, integrate, and test your systems — you keep running the business.",
+    text: "We design, integrate, and test your systems while you keep running the business.",
   },
   {
     title: "You Scale",
@@ -302,7 +302,7 @@ function NextStepsSection() {
 const faqs = [
   {
     q: "What kinds of businesses do you work with?",
-    a: "Field-service and small businesses — towing, property care, detailing, junk removal, and similar — that are ready to stop doing everything by hand and start growing with real systems behind them.",
+    a: "Field-service and small businesses like towing, property care, detailing, and junk removal that are ready to stop doing everything by hand and start growing with real systems behind them.",
   },
   {
     q: "How quickly will I hear back?",
