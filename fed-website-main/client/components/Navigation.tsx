@@ -32,7 +32,7 @@ export default function Navigation() {
           />
         </div>
 
-        {/* Center nav — visually lower shelf */}
+        {/* Center nav, visually lower shelf */}
         <div className="flex-1 flex items-end pb-2 justify-center gap-2">
           {navLinks.map((link) => (
             <Link

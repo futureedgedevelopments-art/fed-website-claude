@@ -1,6 +1,11 @@
 import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import GreenDots from "@/components/GreenDots";
+import Footer from "@/components/Footer";
+import { HowWeHelp } from "@/components/home/HowWeHelp";
+import { SocialProof } from "@/components/home/SocialProof";
+import { Industries } from "@/components/home/Industries";
+import { CTA } from "@/components/home/CTA";
 
 /* ── Hero Section ───────────────────────────────────────── */
 function HeroSection() {
@@ -276,7 +281,12 @@ export default function Index() {
         <HeroSection />
         <PainPointsSection />
         <TransformationSection />
+        <HowWeHelp />
+        <SocialProof />
+        <Industries />
+        <CTA />
       </main>
+      <Footer />
     </div>
   );
 }
