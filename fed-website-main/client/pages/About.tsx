@@ -17,6 +17,8 @@ import {
 } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import GreenDots from "@/components/GreenDots";
+import Footer from "@/components/Footer";
+import { SOCIAL_LINKS } from "@/lib/socials";
 import imacMockup from "@/assets/imac-mockup.png";
 import bizCardFront from "@/assets/business-card-front.png";
 import bizCardBack from "@/assets/business-card-back.png";
@@ -741,10 +743,10 @@ function WorkWithUs() {
 }
 /* ── Stay In The Loop ─────────────────────────────────── */
 const socials = [
-  { name: "INSTAGRAM", handle: "@futureedgdev", desc: "Behind the scenes, client spotlights, and team updates.", Icon: Instagram, href: "https://instagram.com" },
-  { name: "LINKEDIN", handle: "Future Edge Developments", desc: "Industry insights, company news, and professional updates.", Icon: Linkedin, href: "https://linkedin.com" },
-  { name: "FACEBOOK", handle: "Future Edge Developments", desc: "Client features, business tips, and company updates delivered straight to your feed.", Icon: Facebook, href: "https://facebook.com" },
-  { name: "TIKTOK", handle: "@futureedgedevelopments", desc: "Quick tips, tech breakdowns, and a look at how we build growth systems for real businesses.", Icon: Headphones, href: "https://tiktok.com" },
+  { name: "INSTAGRAM", handle: "@futureedgdev", desc: "Behind the scenes, client spotlights, and team updates.", Icon: Instagram, href: SOCIAL_LINKS.instagram },
+  { name: "LINKEDIN", handle: "Future Edge Developments", desc: "Industry insights, company news, and professional updates.", Icon: Linkedin, href: SOCIAL_LINKS.linkedin },
+  { name: "FACEBOOK", handle: "Future Edge Developments", desc: "Client features, business tips, and company updates delivered straight to your feed.", Icon: Facebook, href: SOCIAL_LINKS.facebook },
+  { name: "TIKTOK", handle: "@futureedgedevelopments", desc: "Quick tips, tech breakdowns, and a look at how we build growth systems for real businesses.", Icon: Headphones, href: SOCIAL_LINKS.tiktok },
 ];
 
 function StayInLoop() {
@@ -876,6 +878,7 @@ export default function About() {
         <StayInLoop />
         <ClosingCTA />
       </main>
+      <Footer />
     </div>
   );
 }

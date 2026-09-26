@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { CalendarClock, Headset, LifeBuoy, Mail, Phone } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import GreenDots from "@/components/GreenDots";
+import Footer from "@/components/Footer";
 import {
   Accordion,
   AccordionContent,
@@ -371,6 +372,7 @@ export default function Contact() {
         <NextStepsSection />
         <FaqSection />
       </main>
+      <Footer />
     </div>
   );
 }
