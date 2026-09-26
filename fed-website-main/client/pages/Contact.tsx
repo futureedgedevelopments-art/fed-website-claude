@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { CalendarClock, Headset, Mail, MapPin, Phone } from "lucide-react";
+import { CalendarClock, Headset, LifeBuoy, Mail, Phone } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import GreenDots from "@/components/GreenDots";
 import {
@@ -9,10 +9,10 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-/* ── Contact details — TODO: replace with real FED details ─ */
-const CONTACT_EMAIL = "hello@futureedgedev.com";
-const CONTACT_PHONE = "(555) 555-5555";
-const CONTACT_LOCATION = "Serving service businesses nationwide";
+/* ── Contact details ────────────────────────────────────── */
+const CONTACT_EMAIL = "info@futureedgedev.com";
+const SUPPORT_EMAIL = "support@futureedgedev.com";
+const CONTACT_PHONE = "(844) 722-5678";
 
 /* ── GoHighLevel embeds ─────────────────────────────────── */
 const GHL_EMBED_SCRIPT = "https://link.msgsndr.com/js/form_embed.js";
@@ -112,9 +112,9 @@ function ContactForm() {
 
 /* ── Contact Info Sidebar ───────────────────────────────── */
 const contactMethods = [
+  { icon: Phone, label: "Phone", value: CONTACT_PHONE, href: `tel:+1${CONTACT_PHONE.replace(/\D/g, "")}` },
   { icon: Mail, label: "Email", value: CONTACT_EMAIL, href: `mailto:${CONTACT_EMAIL}` },
-  { icon: Phone, label: "Phone", value: CONTACT_PHONE, href: `tel:${CONTACT_PHONE.replace(/\D/g, "")}` },
-  { icon: MapPin, label: "Location", value: CONTACT_LOCATION },
+  { icon: LifeBuoy, label: "Client Support", value: SUPPORT_EMAIL, href: `mailto:${SUPPORT_EMAIL}` },
 ];
 
 function ContactInfo({ onBook }: { onBook: (key: CalendarKey) => void }) {
@@ -130,7 +130,7 @@ function ContactInfo({ onBook }: { onBook: (key: CalendarKey) => void }) {
           PREFER TO TALK IT THROUGH?
         </h3>
         <p className="text-white text-sm lg:text-base leading-[1.5]">
-          Book a free 30-minute strategy call. We'll map out where your time
+          Book a free strategy call. We'll map out where your time
           is going and what we'd automate first.
         </p>
         <button
@@ -166,28 +166,17 @@ function ContactInfo({ onBook }: { onBook: (key: CalendarKey) => void }) {
       </div>
 
       {/* Direct contact methods */}
-      {contactMethods.map(({ icon: Icon, label, value, href }) => {
-        const content = (
-          <>
-            <div className="w-12 h-12 rounded-[8px] flex items-center justify-center flex-shrink-0 nav-active">
-              <Icon className="w-6 h-6 text-white" />
-            </div>
-            <div className="flex flex-col min-w-0">
-              <span className="text-white/60 text-xs font-medium uppercase tracking-wider">{label}</span>
-              <span className="text-white text-base font-medium">{value}</span>
-            </div>
-          </>
-        );
-        return href ? (
-          <a key={label} href={href} className="glass-dark p-4 flex items-center gap-4 transition-all hover:border-fed-green">
-            {content}
-          </a>
-        ) : (
-          <div key={label} className="glass-dark p-4 flex items-center gap-4">
-            {content}
+      {contactMethods.map(({ icon: Icon, label, value, href }) => (
+        <a key={label} href={href} className="glass-dark p-4 flex items-center gap-4 transition-all hover:border-fed-green">
+          <div className="w-12 h-12 rounded-[8px] flex items-center justify-center flex-shrink-0 nav-active">
+            <Icon className="w-6 h-6 text-white" />
           </div>
-        );
-      })}
+          <div className="flex flex-col min-w-0">
+            <span className="text-white/60 text-xs font-medium uppercase tracking-wider">{label}</span>
+            <span className="text-white text-base font-medium">{value}</span>
+          </div>
+        </a>
+      ))}
     </div>
   );
 }
@@ -311,11 +300,11 @@ function NextStepsSection() {
 const faqs = [
   {
     q: "What kinds of businesses do you work with?",
-    a: "Service businesses — landscaping, towing, home services, and more — that are ready to stop doing everything by hand and start growing with real systems behind them.",
+    a: "Field-service and small businesses — towing, property care, detailing, junk removal, and similar — that are ready to stop doing everything by hand and start growing with real systems behind them.",
   },
   {
     q: "How quickly will I hear back?",
-    a: "We respond to every message within one business day, usually much sooner.",
+    a: `Fast. Every message and booking goes straight to our team, and we'll get back to you as soon as we can. Need something right now? Call us at ${CONTACT_PHONE}.`,
   },
   {
     q: "Is the strategy call really free?",
