@@ -1,6 +1,5 @@
-import { useState, type FormEvent } from "react";
-import { Link } from "react-router-dom";
-import { CalendarClock, CheckCircle2, Mail, MapPin, Phone } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { CalendarClock, Headset, Mail, MapPin, Phone } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import GreenDots from "@/components/GreenDots";
 import {
@@ -14,6 +13,40 @@ import {
 const CONTACT_EMAIL = "hello@futureedgedev.com";
 const CONTACT_PHONE = "(555) 555-5555";
 const CONTACT_LOCATION = "Serving service businesses nationwide";
+
+/* ── GoHighLevel embeds ─────────────────────────────────── */
+const GHL_EMBED_SCRIPT = "https://link.msgsndr.com/js/form_embed.js";
+const CONTACT_FORM_ID = "f557KPXDzO76Tbk9kyc8";
+
+const calendars = {
+  strategy: {
+    tab: "Free Strategy Call",
+    title: "BOOK YOUR FREE STRATEGY CALL",
+    text: "Pick a time that works for you. We'll map out where your time is going and what we'd automate first.",
+    src: "https://api.leadconnectorhq.com/widget/booking/Sl5NL7IdJJsnQ4zlwjga",
+    iframeId: "DMzg7EzQFyaNQcB2z7Jx_1790434869135",
+  },
+  support: {
+    tab: "Customer Service",
+    title: "BOOK A CUSTOMER SERVICE CALL",
+    text: "Already working with us? Grab a time with our team and we'll get you sorted.",
+    src: "https://api.leadconnectorhq.com/widget/booking/7yXBMy5qDK2XDAo9p6n8",
+    iframeId: "DMzg7EzQFyaNQcB2z7Jx_1790434902614",
+  },
+} as const;
+
+type CalendarKey = keyof typeof calendars;
+
+/** Loads the GHL embed script once; it auto-resizes the form and calendar iframes. */
+function useGhlEmbedScript() {
+  useEffect(() => {
+    if (document.querySelector(`script[src="${GHL_EMBED_SCRIPT}"]`)) return;
+    const script = document.createElement("script");
+    script.src = GHL_EMBED_SCRIPT;
+    script.async = true;
+    document.body.appendChild(script);
+  }, []);
+}
 
 /* ── Hero Section ───────────────────────────────────────── */
 function ContactHero() {
@@ -46,106 +79,34 @@ function ContactHero() {
   );
 }
 
-/* ── Contact Form ───────────────────────────────────────── */
-const services = [
-  "Workflow Automation",
-  "CRM & Lead Follow-Up",
-  "Integrations",
-  "Website & Digital Infrastructure",
-  "Not sure yet",
-];
-
-const inputClass =
-  "w-full h-[48px] px-4 rounded-[4px] bg-black/50 border border-white/30 text-white placeholder:text-white/50 focus:outline-none focus:border-fed-green focus:ring-1 focus:ring-fed-green transition-colors";
-
+/* ── Contact Form (GHL "Contact Us" form) ───────────────── */
 function ContactForm() {
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    // TODO: wire this up to the CRM / form endpoint
-    setSubmitted(true);
-  };
-
-  if (submitted) {
-    return (
-      <div className="glass-dark p-8 lg:p-10 flex flex-col items-center text-center gap-4 min-h-[480px] justify-center">
-        <CheckCircle2 className="w-16 h-16 text-fed-green" />
-        <h3 className="text-white font-bold text-2xl lg:text-[28px]">
-          MESSAGE RECEIVED.
-        </h3>
-        <p className="text-white/80 text-base max-w-[400px]">
-          Thanks for reaching out. Someone from our team will get back to you
-          within one business day.
-        </p>
-        <Link
-          to="/"
-          className="mt-4 inline-flex items-center justify-center h-[52px] px-10 rounded-[4px] text-white font-bold text-base btn-green-gradient transition-all hover:opacity-90"
-        >
-          Back to Home →
-        </Link>
-      </div>
-    );
-  }
-
   return (
-    <form onSubmit={handleSubmit} className="glass-dark p-6 lg:p-10 flex flex-col gap-5">
+    <div className="glass-dark p-6 lg:p-10 flex flex-col gap-5">
       <h2 className="text-white font-bold text-2xl lg:text-[32px] leading-[1.3]">
         SEND US A MESSAGE
       </h2>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-        <label className="flex flex-col gap-2 text-sm font-medium text-white">
-          Name
-          <input name="name" required autoComplete="name" placeholder="Jane Smith" className={inputClass} />
-        </label>
-        <label className="flex flex-col gap-2 text-sm font-medium text-white">
-          Business Name
-          <input name="company" autoComplete="organization" placeholder="Smith Landscaping" className={inputClass} />
-        </label>
-        <label className="flex flex-col gap-2 text-sm font-medium text-white">
-          Email
-          <input name="email" type="email" required autoComplete="email" placeholder="jane@company.com" className={inputClass} />
-        </label>
-        <label className="flex flex-col gap-2 text-sm font-medium text-white">
-          Phone
-          <input name="phone" type="tel" autoComplete="tel" placeholder="(555) 123-4567" className={inputClass} />
-        </label>
-      </div>
-
-      <label className="flex flex-col gap-2 text-sm font-medium text-white">
-        What do you need help with?
-        <select name="service" defaultValue="" required className={`${inputClass} appearance-none`}>
-          <option value="" disabled>
-            Select one
-          </option>
-          {services.map((s) => (
-            <option key={s} value={s} className="bg-black">
-              {s}
-            </option>
-          ))}
-        </select>
-      </label>
-
-      <label className="flex flex-col gap-2 text-sm font-medium text-white">
-        Tell us about your business
-        <textarea
-          name="message"
-          required
-          rows={5}
-          placeholder="What's eating up your time right now? What would you automate if you could?"
-          className={`${inputClass} h-auto py-3 resize-none`}
-        />
-      </label>
-
-      <button
-        type="submit"
-        className="self-start inline-flex items-center justify-center h-[52px] px-10 rounded-[4px] text-white font-bold text-base btn-green-gradient transition-all hover:opacity-90"
-        style={{ minWidth: 286 }}
-      >
-        Send Message →
-      </button>
-    </form>
+      <iframe
+        src={`https://api.leadconnectorhq.com/widget/form/${CONTACT_FORM_ID}`}
+        id={`inline-${CONTACT_FORM_ID}`}
+        title="Contact Us"
+        className="w-full rounded-[3px] border-none"
+        style={{ height: 667 }}
+        data-layout="{'id':'INLINE'}"
+        data-trigger-type="alwaysShow"
+        data-trigger-value=""
+        data-activation-type="alwaysActivated"
+        data-activation-value=""
+        data-deactivation-type="neverDeactivate"
+        data-deactivation-value=""
+        data-form-name="Contact Us"
+        data-height="667"
+        data-layout-iframe-id={`inline-${CONTACT_FORM_ID}`}
+        data-form-id={CONTACT_FORM_ID}
+        data-cookie-consent="true"
+        data-cookie-consent-provider="auto"
+      />
+    </div>
   );
 }
 
@@ -156,7 +117,7 @@ const contactMethods = [
   { icon: MapPin, label: "Location", value: CONTACT_LOCATION },
 ];
 
-function ContactInfo() {
+function ContactInfo({ onBook }: { onBook: (key: CalendarKey) => void }) {
   return (
     <div className="flex flex-col gap-6">
       {/* Strategy call card */}
@@ -172,13 +133,36 @@ function ContactInfo() {
           Book a free 30-minute strategy call. We'll map out where your time
           is going and what we'd automate first.
         </p>
-        <a
-          href={`mailto:${CONTACT_EMAIL}?subject=Strategy%20Call`}
+        <button
+          type="button"
+          onClick={() => onBook("strategy")}
           className="self-start inline-flex items-center justify-center h-[48px] px-8 rounded-[4px] text-black font-medium text-base transition-all hover:opacity-90"
           style={{ background: "#D9D9D9" }}
         >
           Book a Strategy Call →
-        </a>
+        </button>
+      </div>
+
+      {/* Customer service card */}
+      <div
+        className="card-dark-gradient rounded-[8px] p-6 lg:p-8 flex flex-col gap-4"
+        style={{ boxShadow: "0 4px 6px 0 rgba(0,0,0,0.07)" }}
+      >
+        <Headset className="w-10 h-10 text-white" />
+        <h3 className="text-white font-bold text-xl lg:text-2xl leading-[1.3]">
+          ALREADY A CLIENT?
+        </h3>
+        <p className="text-white text-sm lg:text-base leading-[1.5]">
+          Need a hand with your systems? Book a customer service call with
+          our team.
+        </p>
+        <button
+          type="button"
+          onClick={() => onBook("support")}
+          className="self-start inline-flex items-center justify-center h-[48px] px-8 rounded-[4px] text-white font-bold text-base btn-green-gradient transition-all hover:opacity-90"
+        >
+          Get Support →
+        </button>
       </div>
 
       {/* Direct contact methods */}
@@ -208,12 +192,67 @@ function ContactInfo() {
   );
 }
 
-function ContactSection() {
+function ContactSection({ onBook }: { onBook: (key: CalendarKey) => void }) {
   return (
     <section className="bg-black py-16 lg:py-20">
-      <div className="max-w-[1440px] mx-auto px-6 lg:px-16 grid grid-cols-1 lg:grid-cols-[1.6fr_1fr] gap-8 lg:gap-12">
+      <div className="max-w-[1440px] mx-auto px-6 lg:px-16 grid grid-cols-1 lg:grid-cols-[1.6fr_1fr] gap-8 lg:gap-12 items-start">
         <ContactForm />
-        <ContactInfo />
+        <ContactInfo onBook={onBook} />
+      </div>
+    </section>
+  );
+}
+
+/* ── Booking Calendars (GHL) ────────────────────────────── */
+function BookingSection({
+  active,
+  onChange,
+  sectionRef,
+}: {
+  active: CalendarKey;
+  onChange: (key: CalendarKey) => void;
+  sectionRef: React.RefObject<HTMLElement>;
+}) {
+  const current = calendars[active];
+  return (
+    <section ref={sectionRef} id="book" className="bg-black pb-16 lg:pb-20 scroll-mt-[100px]">
+      <div className="max-w-[1100px] mx-auto px-6 lg:px-16">
+        <GreenDots variant="5" />
+        <div className="glass-dark mt-4 p-6 lg:p-10 flex flex-col gap-6">
+          <div className="flex flex-wrap gap-2">
+            {(Object.keys(calendars) as CalendarKey[]).map((key) => (
+              <button
+                key={key}
+                type="button"
+                onClick={() => onChange(key)}
+                className={`flex items-center justify-center px-6 h-[39px] rounded-lg text-white text-sm font-medium transition-all ${
+                  active === key ? "nav-active" : "nav-inactive"
+                }`}
+              >
+                {calendars[key].tab}
+              </button>
+            ))}
+          </div>
+          <div>
+            <h2 className="text-white font-bold text-2xl lg:text-[36px] leading-[1.4]">
+              {current.title}
+            </h2>
+            <p className="text-white/80 text-base mt-2">{current.text}</p>
+          </div>
+          {/* Both calendars stay mounted so the embed script can size them */}
+          {(Object.keys(calendars) as CalendarKey[]).map((key) => (
+            <iframe
+              key={key}
+              src={calendars[key].src}
+              id={calendars[key].iframeId}
+              title={calendars[key].tab}
+              allow="payment"
+              scrolling="no"
+              className={`w-full border-none overflow-hidden rounded-[4px] ${active === key ? "" : "hidden"}`}
+              style={{ minHeight: 700 }}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -317,12 +356,27 @@ function FaqSection() {
 
 /* ── Page ───────────────────────────────────────────────── */
 export default function Contact() {
+  useGhlEmbedScript();
+  const [calendar, setCalendar] = useState<CalendarKey>("strategy");
+  const bookingRef = useRef<HTMLElement>(null);
+
+  const openCalendar = (key: CalendarKey) => {
+    setCalendar(key);
+    bookingRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  // Links like /contact#book land straight on the calendar
+  useEffect(() => {
+    if (window.location.hash === "#book") bookingRef.current?.scrollIntoView();
+  }, []);
+
   return (
     <div className="min-h-screen bg-black">
       <Navigation />
       <main>
         <ContactHero />
-        <ContactSection />
+        <ContactSection onBook={openCalendar} />
+        <BookingSection active={calendar} onChange={setCalendar} sectionRef={bookingRef} />
         <NextStepsSection />
         <FaqSection />
       </main>

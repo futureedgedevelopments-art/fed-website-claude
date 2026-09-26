@@ -83,7 +83,7 @@ function HeroSection() {
             {/* Book a Strategy Call button */}
             <div>
               <Link
-                to="/contact"
+                to="/contact#book"
                 className="inline-flex items-center justify-center h-[52px] px-10 rounded-[4px] text-black font-medium text-base transition-all hover:opacity-90"
                 style={{ background: "#D9D9D9", minWidth: 286 }}
               >
