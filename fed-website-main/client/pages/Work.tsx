@@ -15,6 +15,7 @@ import Navigation from "@/components/Navigation";
 import GreenDots from "@/components/GreenDots";
 import Footer from "@/components/Footer";
 import { CTA } from "@/components/home/CTA";
+import { usePageMeta } from "@/hooks/use-page-meta";
 
 // Every case study here is drawn from the Proof Point and Systems Built fields
 // in the Notion Clients database. Client names are intentionally left out.
@@ -272,6 +273,7 @@ function MoreBuildsSection() {
 
 /* ── Page ───────────────────────────────────────────────── */
 export default function Work() {
+  usePageMeta("Our Work", "Real systems for real businesses. See what we've built for towing companies, landscapers, detailers, and more.");
   return (
     <div className="min-h-screen bg-black font-inter">
       <Navigation />

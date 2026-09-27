@@ -9,6 +9,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { usePageMeta } from "@/hooks/use-page-meta";
 
 /* ── Contact details ────────────────────────────────────── */
 const CONTACT_EMAIL = "info@futureedgedev.com";
@@ -348,6 +349,7 @@ function FaqSection() {
 
 /* ── Page ───────────────────────────────────────────────── */
 export default function Contact() {
+  usePageMeta("Contact", "Book a free 30-minute strategy call or send us a message. We reply within 24 hours.");
   useGhlEmbedScript();
   const [calendar, setCalendar] = useState<CalendarKey>("strategy");
   const bookingRef = useRef<HTMLElement>(null);
