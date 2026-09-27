@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 const industries = [
-  { name: "Landscaping", desc: "Landscapers, lawn care, property maintenance" },
-  { name: "Auto", desc: "Mobile and shop-based auto detailing and auto services" },
-  { name: "Contractors", desc: "General contractors, home services" },
-  { name: "Towing", desc: "Towing companies and solutions for property managers" },
-  { name: "E-Commerce", desc: "Print on demand, apparel companies, and more" },
-  { name: "Tech", desc: "Automation and custom workflow solutions" },
+  { name: "Landscaping", desc: "Landscapers, lawn care, property maintenance", href: "https://autoscaping.com" },
+  { name: "Auto", desc: "Mobile and shop-based auto detailing and auto services", href: "/contact" },
+  { name: "Contractors", desc: "General contractors, home services", href: "/contact" },
+  { name: "Towing", desc: "Towing companies and solutions for property managers", href: "https://autotowing.app" },
+  { name: "E-Commerce", desc: "Print on demand, apparel companies, and more", href: "/contact" },
+  { name: "Tech", desc: "Automation and custom workflow solutions", href: "/contact" },
 ];
 
 export function Industries() {
@@ -30,12 +30,23 @@ export function Industries() {
                   {ind.name}
                 </div>
                 <p className="text-white/85 text-sm leading-[1.4] flex-1 px-2">{ind.desc}</p>
-                <Link
-                  to="/services"
-                  className="inline-flex items-center justify-center h-[32px] w-[128px] rounded-[4px] text-white text-sm font-medium btn-white-gradient mb-2"
-                >
-                  Learn More →
-                </Link>
+                {ind.href.startsWith("http") ? (
+                  <a
+                    href={ind.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center h-[32px] w-[128px] rounded-[4px] text-white text-sm font-medium btn-white-gradient mb-2"
+                  >
+                    Learn More →
+                  </a>
+                ) : (
+                  <Link
+                    to={ind.href}
+                    className="inline-flex items-center justify-center h-[32px] w-[128px] rounded-[4px] text-white text-sm font-medium btn-white-gradient mb-2"
+                  >
+                    Learn More →
+                  </Link>
+                )}
               </div>
             ))}
           </div>

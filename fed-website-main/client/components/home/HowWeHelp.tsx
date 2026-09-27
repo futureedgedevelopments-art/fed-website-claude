@@ -1,46 +1,95 @@
+import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
+import { Trees } from "lucide-react";
 import GreenDots from "@/components/GreenDots";
 import fedBadge from "@/assets/fed-badge-logo.png";
 
-const services = [
+type Service = {
+  title: string;
+  tagline: string;
+  desc: string;
+  icon: ReactNode;
+  active: boolean;
+  cta: { label: string; href: string; external: boolean };
+  secondary?: { label: string; href: string };
+};
+
+const services: Service[] = [
+  {
+    title: "AUTOTOWING",
+    tagline: "Guest parking and tow enforcement, handled.",
+    desc: "Permits, property manager portals, tow-eligible queues, and tow and lien notices in one platform for towing companies and property managers. Free trial available.",
+    icon: (
+      <img
+        src="https://api.builder.io/api/v1/image/assets/TEMP/0788c248da3f09c8ae56757d8188a6d4d17e10a3?width=154"
+        alt=""
+        className="w-[64px] h-[64px] object-contain"
+      />
+    ),
+    active: true,
+    cta: { label: "Explore AutoTowing", href: "https://autotowing.app", external: true },
+    secondary: { label: "Customer login", href: "https://platform.autotowing.app" },
+  },
+  {
+    title: "AUTOSCAPING",
+    tagline: "The front office for landscapers.",
+    desc: "Websites, lead capture, quotes, booking, invoicing, and review requests built for landscaping and property maintenance crews. Start with getting found and grow into running the whole operation.",
+    icon: <Trees className="w-[64px] h-[64px] text-white" strokeWidth={1.5} />,
+    active: false,
+    cta: { label: "Explore AutoScaping", href: "https://autoscaping.com", external: true },
+  },
   {
     title: "CUSTOM\nSOLUTIONS",
-    desc: "Custom automation systems, pricing engines, client portals, workflow tools, internal dashboards, integrations",
-    icon: "https://api.builder.io/api/v1/image/assets/TEMP/aec2950f4bb9b0ebc447f631cbcc4e45ba8b5d09?width=150",
-    active: true,
-  },
-  {
-    title: "TOWING\nPLATFORM",
-    desc: "All-in-one platform: permit management, property manager portals, dispatch, invoicing, driver tracking, reporting",
-    icon: "https://api.builder.io/api/v1/image/assets/TEMP/0788c248da3f09c8ae56757d8188a6d4d17e10a3?width=154",
+    tagline: "Built around how you run.",
+    desc: "Pricing engines, client portals, dashboards, and integrations for businesses that have outgrown off-the-shelf tools. Need a website to go with it? We build those too.",
+    icon: (
+      <img
+        src="https://api.builder.io/api/v1/image/assets/TEMP/aec2950f4bb9b0ebc447f631cbcc4e45ba8b5d09?width=150"
+        alt=""
+        className="w-[64px] h-[64px] object-contain"
+      />
+    ),
     active: false,
-  },
-  {
-    title: "DIGITAL\nMARKETING",
-    desc: "Websites, SEO, Google Business optimization, CRM setup, lead generation, branding, social media presence",
-    icon: "https://api.builder.io/api/v1/image/assets/TEMP/356dee3e31f8f64c039dcc750f9a0fb4ec687eb0?width=154",
-    active: false,
+    cta: { label: "Talk to us", href: "/contact", external: false },
   },
 ];
 
-function ServiceCard({ s }: { s: (typeof services)[number] }) {
+const ctaClass = "text-white text-center text-sm font-semibold";
+const ctaStyle = { textShadow: "0 4px 4px rgba(0,0,0,0.25)" };
+
+function ServiceCard({ s }: { s: Service }) {
   return (
     <div
-      className={`flex flex-col items-center gap-[14px] rounded-[8px] p-6 w-full max-w-[260px] ${s.active ? "card-green-gradient" : "card-dark-gradient"}`}
+      className={`flex flex-col items-center gap-[12px] rounded-[8px] p-6 w-full max-w-[280px] ${s.active ? "card-green-gradient" : "card-dark-gradient"}`}
       style={{ boxShadow: "0 4px 6px rgba(0,0,0,0.07)" }}
     >
-      <img src={s.icon} alt="" className="w-[64px] h-[64px] object-contain" />
+      {s.icon}
       <h3 className="text-white text-center font-semibold text-[22px] leading-[28px] whitespace-pre-line">
         {s.title}
       </h3>
+      <p className="text-white text-center text-sm font-semibold leading-[20px]">{s.tagline}</p>
       <p className="text-white text-center text-xs font-normal leading-[20px]">{s.desc}</p>
-      <Link
-        to="/services"
-        className="text-white text-center text-sm font-semibold mt-auto"
-        style={{ textShadow: "0 4px 4px rgba(0,0,0,0.25)" }}
-      >
-        Learn More →
-      </Link>
+      <div className="mt-auto flex flex-col items-center gap-1">
+        {s.cta.external ? (
+          <a href={s.cta.href} target="_blank" rel="noopener noreferrer" className={ctaClass} style={ctaStyle}>
+            {s.cta.label} →
+          </a>
+        ) : (
+          <Link to={s.cta.href} className={ctaClass} style={ctaStyle}>
+            {s.cta.label} →
+          </Link>
+        )}
+        {s.secondary && (
+          <a
+            href={s.secondary.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white/75 text-center text-xs underline underline-offset-2 hover:text-white"
+          >
+            {s.secondary.label}
+          </a>
+        )}
+      </div>
     </div>
   );
 }
@@ -67,38 +116,38 @@ export function HowWeHelp() {
         <div className="flex flex-col items-center gap-6">
           <GreenDots variant="6" />
           <h2 className="text-white font-bold text-2xl lg:text-[36px] text-center leading-[1.4] max-w-[820px]">
-            THREE WAYS WE TRANSFORM
+            THREE WAYS WE TAKE
             <br />
-            YOUR OPERATIONS
+            WORK OFF YOUR PLATE
           </h2>
         </div>
 
         {/* Desktop: triangular layout with center medallion */}
         <div className="hidden lg:block mt-16">
-          <div className="relative mx-auto" style={{ maxWidth: 920, height: 640 }}>
+          <div className="relative mx-auto" style={{ maxWidth: 920, height: 800 }}>
             {/* Triangle connector lines */}
             <svg
               className="absolute inset-0 w-full h-full pointer-events-none"
-              viewBox="0 0 920 640"
+              viewBox="0 0 920 800"
               preserveAspectRatio="none"
               aria-hidden="true"
             >
-              {/* top card center (460, 130) -> bottom-left (175, 510) -> bottom-right (745, 510) -> back */}
+              {/* top card center -> bottom-left card center -> bottom-right card center -> back */}
               <polygon
-                points="460,130 175,510 745,510"
+                points="460,180 185,630 735,630"
                 fill="none"
                 stroke="rgba(255,255,255,0.35)"
                 strokeWidth="1"
               />
             </svg>
 
-            {/* Top - Custom Solutions */}
+            {/* Top - AutoTowing */}
             <div className="absolute left-1/2 -translate-x-1/2" style={{ top: 0 }}>
               <ServiceCard s={services[0]} />
             </div>
 
             {/* Center medallion - positioned at triangle centroid */}
-            <div className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2" style={{ top: 383 }}>
+            <div className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2" style={{ top: 520 }}>
               <img
                 src={fedBadge}
                 alt="Future Edge Developments"
@@ -107,12 +156,12 @@ export function HowWeHelp() {
               />
             </div>
 
-            {/* Bottom-left - Towing */}
+            {/* Bottom-left - AutoScaping */}
             <div className="absolute" style={{ left: 45, bottom: 0 }}>
               <ServiceCard s={services[1]} />
             </div>
 
-            {/* Bottom-right - Digital Marketing */}
+            {/* Bottom-right - Custom Solutions */}
             <div className="absolute" style={{ right: 45, bottom: 0 }}>
               <ServiceCard s={services[2]} />
             </div>
