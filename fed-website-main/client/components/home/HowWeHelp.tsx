@@ -16,29 +16,6 @@ type Service = {
 
 const services: Service[] = [
   {
-    title: "AUTOTOWING",
-    tagline: "Guest parking and tow enforcement, handled.",
-    desc: "Permits, property manager portals, tow-eligible queues, and tow and lien notices in one platform for towing companies and property managers. Free trial available.",
-    icon: (
-      <img
-        src="https://api.builder.io/api/v1/image/assets/TEMP/0788c248da3f09c8ae56757d8188a6d4d17e10a3?width=154"
-        alt=""
-        className="w-[64px] h-[64px] object-contain"
-      />
-    ),
-    active: true,
-    cta: { label: "Explore AutoTowing", href: "https://autotowing.app", external: true },
-    secondary: { label: "Customer login", href: "https://platform.autotowing.app" },
-  },
-  {
-    title: "AUTOSCAPING",
-    tagline: "The front office for landscapers.",
-    desc: "Websites, lead capture, quotes, booking, invoicing, and review requests built for landscaping and property maintenance crews. Start with getting found and grow into running the whole operation.",
-    icon: <Trees className="w-[64px] h-[64px] text-white" strokeWidth={1.5} />,
-    active: false,
-    cta: { label: "Explore AutoScaping", href: "https://autoscaping.com", external: true },
-  },
-  {
     title: "CUSTOM\nSOLUTIONS",
     tagline: "Built around how you run.",
     desc: "Pricing engines, client portals, dashboards, and integrations for businesses that have outgrown off-the-shelf tools. Need a website to go with it? We build those too.",
@@ -49,8 +26,31 @@ const services: Service[] = [
         className="w-[64px] h-[64px] object-contain"
       />
     ),
-    active: false,
+    active: true,
     cta: { label: "Talk to us", href: "/contact", external: false },
+  },
+  {
+    title: "AUTOTOWING",
+    tagline: "Guest parking and tow enforcement, handled.",
+    desc: "Permits, property manager portals, tow-eligible queues, and tow and lien notices in one platform for towing companies and property managers. Free trial available.",
+    icon: (
+      <img
+        src="https://api.builder.io/api/v1/image/assets/TEMP/0788c248da3f09c8ae56757d8188a6d4d17e10a3?width=154"
+        alt=""
+        className="w-[64px] h-[64px] object-contain"
+      />
+    ),
+    active: false,
+    cta: { label: "Explore AutoTowing", href: "https://autotowing.app", external: true },
+    secondary: { label: "Customer login", href: "https://platform.autotowing.app" },
+  },
+  {
+    title: "AUTOSCAPING",
+    tagline: "The front office for landscapers.",
+    desc: "Websites, lead capture, quotes, booking, invoicing, and review requests built for landscaping and property maintenance crews. Start with getting found and grow into running the whole operation.",
+    icon: <Trees className="w-[64px] h-[64px] text-white" strokeWidth={1.5} />,
+    active: false,
+    cta: { label: "Explore AutoScaping", href: "https://autoscaping.com", external: true },
   },
 ];
 
@@ -141,7 +141,7 @@ export function HowWeHelp() {
               />
             </svg>
 
-            {/* Top - AutoTowing */}
+            {/* Top - Custom Solutions */}
             <div className="absolute left-1/2 -translate-x-1/2" style={{ top: 0 }}>
               <ServiceCard s={services[0]} />
             </div>
@@ -156,12 +156,12 @@ export function HowWeHelp() {
               />
             </div>
 
-            {/* Bottom-left - AutoScaping */}
+            {/* Bottom-left - AutoTowing */}
             <div className="absolute" style={{ left: 45, bottom: 0 }}>
               <ServiceCard s={services[1]} />
             </div>
 
-            {/* Bottom-right - Custom Solutions */}
+            {/* Bottom-right - AutoScaping */}
             <div className="absolute" style={{ right: 45, bottom: 0 }}>
               <ServiceCard s={services[2]} />
             </div>
