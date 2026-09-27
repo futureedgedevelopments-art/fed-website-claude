@@ -18,6 +18,7 @@ import {
 import Navigation from "@/components/Navigation";
 import GreenDots from "@/components/GreenDots";
 import Footer from "@/components/Footer";
+import { Industries } from "@/components/Industries";
 import { SOCIAL_LINKS } from "@/lib/socials";
 import imacMockup from "@/assets/imac-mockup.png";
 import bizCardFront from "@/assets/business-card-front.png";
@@ -536,47 +537,6 @@ function StoriesSection() {
   );
 }
 
-/* ── Industries ─────────────────────────────────────────── */
-const industries = [
-  "Towing",
-  "Landscaping",
-  "Property Maintenance",
-  "Auto Detailing",
-  "Junk Removal",
-  "Cleaning",
-  "Data Destruction & E-Waste",
-  "Sports & Athletics",
-  "Non-Profits",
-  "Greek Life",
-  "Telecom",
-  "Security",
-  "Real Estate",
-  "Custom Apparel",
-  "E-Commerce",
-];
-
-function IndustriesSection() {
-  return (
-    <section className="bg-black pb-16 lg:pb-20">
-      <div className="max-w-[1100px] mx-auto px-6 lg:px-16 text-center">
-        <h2 className="text-white font-bold text-xl lg:text-[28px] mb-8">
-          INDUSTRIES WE'VE WORKED IN
-        </h2>
-        <div className="flex flex-wrap justify-center gap-3">
-          {industries.map((name) => (
-            <span
-              key={name}
-              className="px-4 py-2 rounded-lg text-white text-sm font-medium nav-inactive"
-            >
-              {name}
-            </span>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 /* ── What It's Like To Work With Us ───────────────────── */
 const workSteps = [
   { num: "1", title: "Strategy Call", desc: "We learn your business, your goals, and where you're stuck.", Icon: PhoneCall },
@@ -873,7 +833,7 @@ export default function About() {
           </>
         )}
         <StoriesSection />
-        <IndustriesSection />
+        <Industries />
         <WorkWithUs />
         <StayInLoop />
         <ClosingCTA />

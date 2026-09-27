@@ -17,7 +17,11 @@ const socials = [
   { label: "TikTok", href: SOCIAL_LINKS.tiktok },
 ];
 
-const services = ["Custom Solutions", "Digital Marketing", "Towing Platform", "Website Development"];
+const services = [
+  { label: "AutoTowing", href: "https://autotowing.app" },
+  { label: "AutoScaping", href: "https://autoscaping.com" },
+  { label: "Custom Solutions", href: "/contact" },
+];
 
 export default function Footer() {
   return (
@@ -43,7 +47,13 @@ export default function Footer() {
           <h4 className="text-fed-green font-medium text-[20px] mb-3">Our Services</h4>
           <ul className="text-white text-xs font-medium space-y-1.5">
             {services.map((s) => (
-              <li key={s}>{s}</li>
+              <li key={s.label}>
+                {s.href.startsWith("http") ? (
+                  <a href={s.href} target="_blank" rel="noopener noreferrer" className="hover:text-fed-green transition-colors">{s.label}</a>
+                ) : (
+                  <Link to={s.href} className="hover:text-fed-green transition-colors">{s.label}</Link>
+                )}
+              </li>
             ))}
           </ul>
         </div>
