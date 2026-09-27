@@ -108,14 +108,14 @@ function HeroSection() {
               </div>
             </div>
 
-            {/* Watch How It Works button */}
+            {/* See Our Work button */}
             <div>
               <Link
                 to="/work"
                 className="inline-flex items-center justify-center h-[52px] px-10 rounded-[4px] text-white font-bold text-base btn-green-gradient transition-all hover:opacity-90"
                 style={{ minWidth: 286 }}
               >
-                Watch How It Works →
+                See Our Work →
               </Link>
             </div>
           </div>
