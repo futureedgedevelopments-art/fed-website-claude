@@ -65,30 +65,57 @@ export function canonicalUrl(path: string) {
 }
 
 const ORG_ID = `${SITE_URL}/#organization`;
+const WEBSITE_ID = `${SITE_URL}/#website`;
+const LOGO_ID = `${SITE_URL}/#logo`;
+const US = { "@type": "Country", name: "United States" };
 
+// Organization (not LocalBusiness/ProfessionalService): FED has no public
+// storefront address, and LocalBusiness types expect one.
 const organization = {
-  "@context": "https://schema.org",
-  "@type": ["Organization", "ProfessionalService"],
+  "@type": "Organization",
   "@id": ORG_ID,
   name: SITE_NAME,
+  alternateName: "FED",
   url: `${SITE_URL}/`,
-  logo: `${SITE_URL}/logo.png`,
-  image: OG_IMAGE,
+  logo: {
+    "@type": "ImageObject",
+    "@id": LOGO_ID,
+    url: `${SITE_URL}/logo.png`,
+    width: 400,
+    height: 400,
+    caption: SITE_NAME,
+  },
+  image: { "@id": LOGO_ID },
   description: PAGE_META["/"].description,
   slogan: "We build the systems that let you scale.",
   foundingDate: BUSINESS.founded,
   telephone: BUSINESS.phone,
   email: BUSINESS.email,
-  areaServed: { "@type": "Country", name: "United States" },
+  areaServed: US,
   founder: {
     "@type": "Person",
+    "@id": `${SITE_URL}/about#eric-sullivan`,
     name: BUSINESS.founder.name,
     jobTitle: BUSINESS.founder.title,
+    worksFor: { "@id": ORG_ID },
     sameAs: [BUSINESS.founder.linkedin],
   },
   contactPoint: [
-    { "@type": "ContactPoint", contactType: "sales", telephone: BUSINESS.phone, email: BUSINESS.email },
-    { "@type": "ContactPoint", contactType: "customer support", email: BUSINESS.supportEmail },
+    {
+      "@type": "ContactPoint",
+      contactType: "sales",
+      telephone: BUSINESS.phone,
+      email: BUSINESS.email,
+      areaServed: "US",
+      availableLanguage: "English",
+    },
+    {
+      "@type": "ContactPoint",
+      contactType: "customer support",
+      email: BUSINESS.supportEmail,
+      areaServed: "US",
+      availableLanguage: "English",
+    },
   ],
   sameAs: Object.values(SOCIAL_LINKS).filter(Boolean),
   brand: [
@@ -107,48 +134,55 @@ const organization = {
 };
 
 const website = {
-  "@context": "https://schema.org",
   "@type": "WebSite",
-  "@id": `${SITE_URL}/#website`,
+  "@id": WEBSITE_ID,
   name: SITE_NAME,
   url: `${SITE_URL}/`,
+  inLanguage: "en-US",
   publisher: { "@id": ORG_ID },
 };
 
 const services = [
   {
+    id: "custom-solutions",
     name: "Custom Solutions",
+    serviceType: "Custom business automation and software development",
     url: canonicalUrl("/services/custom-solutions"),
     description:
       "Custom automation systems, pricing calculators, client portals, internal tools, integrations, and reporting built around how a business actually runs.",
   },
   {
+    id: "autotowing",
     name: "AutoTowing",
+    serviceType: "Towing and parking enforcement software",
     url: "https://autotowing.app",
     description:
       "Guest parking and tow enforcement platform for towing companies and property managers: permits, property manager portals, tow-eligible queues, and tow and lien notices.",
   },
   {
+    id: "autoscaping",
     name: "AutoScaping",
+    serviceType: "Landscaping business software",
     url: "https://autoscaping.com",
     description:
       "Front office system for landscaping and property maintenance companies: website, lead capture, quotes, booking, invoicing, and review requests.",
   },
 ];
 
-function serviceJsonLd(s: (typeof services)[number]) {
+function serviceNode(s: (typeof services)[number]) {
   return {
-    "@context": "https://schema.org",
     "@type": "Service",
+    "@id": `${SITE_URL}/services#${s.id}`,
     name: s.name,
+    serviceType: s.serviceType,
     url: s.url,
     description: s.description,
     provider: { "@id": ORG_ID },
-    areaServed: { "@type": "Country", name: "United States" },
+    areaServed: US,
   };
 }
 
-function breadcrumb(path: string) {
+function breadcrumbNode(path: string) {
   const parts = path.split("/").filter(Boolean);
   const items = [{ name: "Home", path: "/" }];
   let acc = "";
@@ -157,8 +191,8 @@ function breadcrumb(path: string) {
     items.push({ name: PAGE_META[acc]?.title ?? p, path: acc });
   }
   return {
-    "@context": "https://schema.org",
     "@type": "BreadcrumbList",
+    "@id": `${canonicalUrl(path)}#breadcrumb`,
     itemListElement: items.map((it, i) => ({
       "@type": "ListItem",
       position: i + 1,
@@ -168,16 +202,60 @@ function breadcrumb(path: string) {
   };
 }
 
-/** Structured data blocks for a given route. */
+const PAGE_TYPE: Record<string, string> = {
+  "/about": "AboutPage",
+  "/contact": "ContactPage",
+  "/work": "CollectionPage",
+};
+
+/**
+ * Structured data for a route as a single connected @graph: the organization,
+ * the website, this page, and anything the page is about.
+ */
 export function jsonLdFor(path: string): object[] {
-  const blocks: object[] = [organization, website];
-  if (path !== "/") blocks.push(breadcrumb(path));
-  if (path === "/services") blocks.push(...services.map(serviceJsonLd));
-  if (path === "/services/custom-solutions") blocks.push(serviceJsonLd(services[0]));
+  const url = canonicalUrl(path);
+  const meta = PAGE_META[path];
+  const pageNode: Record<string, unknown> = {
+    "@type": PAGE_TYPE[path] ?? "WebPage",
+    "@id": `${url}#webpage`,
+    url,
+    name: fullTitle(meta),
+    description: meta.description,
+    inLanguage: "en-US",
+    isPartOf: { "@id": WEBSITE_ID },
+    about: { "@id": ORG_ID },
+    primaryImageOfPage: { "@type": "ImageObject", url: OG_IMAGE, width: 1200, height: 630 },
+  };
+  const graph: object[] = [organization, website, pageNode];
+
+  if (path !== "/") {
+    graph.push(breadcrumbNode(path));
+    pageNode.breadcrumb = { "@id": `${url}#breadcrumb` };
+  }
+  if (path === "/services") {
+    graph.push(...services.map(serviceNode));
+    pageNode.mainEntity = {
+      "@type": "ItemList",
+      itemListElement: services.map((s, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        item: { "@id": `${SITE_URL}/services#${s.id}` },
+      })),
+    };
+  }
+  if (path === "/services/custom-solutions") {
+    graph.push(serviceNode(services[0]));
+    pageNode.mainEntity = { "@id": `${SITE_URL}/services#custom-solutions` };
+  }
+  if (path === "/about") {
+    pageNode.mainEntity = { "@id": ORG_ID };
+  }
   if (path === "/contact") {
-    blocks.push({
-      "@context": "https://schema.org",
+    const faqId = `${url}#faq`;
+    graph.push({
       "@type": "FAQPage",
+      "@id": faqId,
+      isPartOf: { "@id": `${url}#webpage` },
       mainEntity: FAQS.map((f) => ({
         "@type": "Question",
         name: f.q,
@@ -185,13 +263,6 @@ export function jsonLdFor(path: string): object[] {
       })),
     });
   }
-  if (path === "/about") {
-    blocks.push({
-      "@context": "https://schema.org",
-      "@type": "AboutPage",
-      url: canonicalUrl("/about"),
-      about: { "@id": ORG_ID },
-    });
-  }
-  return blocks;
+
+  return [{ "@context": "https://schema.org", "@graph": graph }];
 }

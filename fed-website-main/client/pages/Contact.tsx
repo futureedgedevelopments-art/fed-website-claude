@@ -313,13 +313,18 @@ function FaqSection() {
           <h2 className="text-white font-bold text-2xl lg:text-[36px] leading-[1.4] mb-4">
             QUESTIONS?
           </h2>
-          <Accordion type="single" collapsible className="w-full">
+          <Accordion
+            type="single"
+            collapsible
+            className="w-full [&_[role=region][data-state=closed]]:hidden"
+          >
             {faqs.map((faq) => (
               <AccordionItem key={faq.q} value={faq.q} className="border-white/30">
                 <AccordionTrigger className="text-white text-left text-base lg:text-lg font-medium hover:no-underline hover:text-fed-green">
                   {faq.q}
                 </AccordionTrigger>
-                <AccordionContent className="text-white/80 text-sm lg:text-base leading-[1.6]">
+                {/* forceMount keeps answers in the HTML (hidden until opened) so crawlers can read them */}
+                <AccordionContent forceMount className="text-white/80 text-sm lg:text-base leading-[1.6]">
                   {faq.a}
                 </AccordionContent>
               </AccordionItem>

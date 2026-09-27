@@ -23,6 +23,9 @@ const {
   jsonLdFor,
 } = await import(pathToFileURL(ssrEntry).href);
 
+// Lets search engines show full snippets and large image previews.
+const ROBOTS_INDEX = "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1";
+
 const template = fs.readFileSync(path.join(distDir, "index.html"), "utf8");
 
 const esc = (s) =>
@@ -36,7 +39,7 @@ function headFor(route, meta) {
   const tags = [
     `<title>${esc(title)}</title>`,
     `<meta name="description" content="${esc(meta.description)}" />`,
-    `<meta name="robots" content="${meta.noindex ? "noindex" : "index, follow"}" />`,
+    `<meta name="robots" content="${meta.noindex ? "noindex, follow" : ROBOTS_INDEX}" />`,
     `<meta property="og:type" content="website" />`,
     `<meta property="og:site_name" content="${esc(SITE_NAME)}" />`,
     `<meta property="og:title" content="${esc(title)}" />`,

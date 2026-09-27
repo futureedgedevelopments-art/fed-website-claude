@@ -34,7 +34,11 @@ export function usePageMeta(meta: PageMeta) {
     setMeta("name", "description", meta.description);
     setMeta("property", "og:title", title);
     setMeta("property", "og:description", meta.description);
-    setMeta("name", "robots", meta.noindex ? "noindex" : "index, follow");
+    setMeta(
+      "name",
+      "robots",
+      meta.noindex ? "noindex, follow" : "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+    );
     if (!meta.noindex) {
       setMeta("property", "og:url", canonicalUrl(pathname));
       setCanonical(canonicalUrl(pathname));
