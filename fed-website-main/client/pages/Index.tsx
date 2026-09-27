@@ -6,6 +6,7 @@ import { HowWeHelp } from "@/components/home/HowWeHelp";
 import { SocialProof } from "@/components/home/SocialProof";
 import { Industries } from "@/components/Industries";
 import { CTA } from "@/components/home/CTA";
+import { usePageMeta } from "@/hooks/use-page-meta";
 
 /* ── Hero Section ───────────────────────────────────────── */
 function HeroSection() {
@@ -274,6 +275,7 @@ function TransformationSection() {
 
 /* ── Page ───────────────────────────────────────────────── */
 export default function Index() {
+  usePageMeta("Future Edge Developments", "We build the systems that let service businesses scale: custom automation, integrations, and platforms like AutoTowing and AutoScaping.");
   return (
     <div className="min-h-screen bg-black">
       <Navigation />

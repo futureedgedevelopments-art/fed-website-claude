@@ -24,6 +24,7 @@ import imacMockup from "@/assets/imac-mockup.png";
 import bizCardFront from "@/assets/business-card-front.png";
 import bizCardBack from "@/assets/business-card-back.png";
 import ericPresenting from "@/assets/eric-presenting.jpg";
+import { usePageMeta } from "@/hooks/use-page-meta";
 
 // Businesses served, per the Clients database in Notion (29 as of Sep 2026)
 const BUSINESSES_SERVED = "25+";
@@ -816,6 +817,7 @@ function ClosingCTA() {
 
 /* ── Page ───────────────────────────────────────────────── */
 export default function About() {
+  usePageMeta("About", "Meet the team building the systems behind service businesses. Founded in 2023 by Eric Sullivan.");
   return (
     <div className="min-h-screen bg-black font-inter">
       <Navigation />
