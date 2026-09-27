@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom";
+// Shared by the Home and About pages. Grouped from the industries in the
+// Notion Clients database so the two pages always tell the same story.
 const industries = [
-  { name: "Landscaping", desc: "Landscapers, lawn care, property maintenance", href: "https://autoscaping.com" },
-  { name: "Auto", desc: "Mobile and shop-based auto detailing and auto services", href: "/contact" },
-  { name: "Contractors", desc: "General contractors, home services", href: "/contact" },
-  { name: "Towing", desc: "Towing companies and solutions for property managers", href: "https://autotowing.app" },
-  { name: "E-Commerce", desc: "Print on demand, apparel companies, and more", href: "/contact" },
-  { name: "Tech", desc: "Automation and custom workflow solutions", href: "/contact" },
+  { name: "Towing", desc: "Tow companies and property managers running guest parking and enforcement", href: "https://autotowing.app" },
+  { name: "Landscaping", desc: "Landscapers, lawn care, and property maintenance crews", href: "https://autoscaping.com" },
+  { name: "Auto Detailing", desc: "Mobile and shop detailers, from solo operators to multi-crew companies", href: "/contact" },
+  { name: "Home Services", desc: "Cleaning, junk removal, and crews that live on quotes and bookings", href: "/contact" },
+  { name: "Sports & Nonprofits", desc: "Booster clubs, sports programs, and Greek life chapters", href: "/contact" },
+  { name: "B2B & Retail", desc: "Data destruction, telecom, security, real estate, apparel, and e-commerce", href: "/contact" },
 ];
 
 export function Industries() {
@@ -24,7 +26,7 @@ export function Industries() {
                 className={`flex flex-col items-center text-center p-4 gap-3 ${i > 0 ? "border-l border-white/30" : ""}`}
               >
                 <div
-                  className="w-full py-3 text-white font-medium text-[20px]"
+                  className="w-full py-3 px-2 text-white font-medium text-[18px] leading-tight min-h-[72px] flex items-center justify-center"
                   style={{ background: i === 0 ? "linear-gradient(90deg, rgba(0,0,0,0.50) 0%, #3AB984 100%)" : "linear-gradient(90deg, rgba(0,0,0,0.50) 0%, #3AB984 100%)" }}
                 >
                   {ind.name}
