@@ -20,7 +20,7 @@ const socials = [
 const services = [
   { label: "AutoTowing", href: "https://autotowing.app" },
   { label: "AutoScaping", href: "https://autoscaping.com" },
-  { label: "Custom Solutions", href: "/contact" },
+  { label: "Custom Solutions", href: "/services/custom-solutions" },
 ];
 
 export default function Footer() {
