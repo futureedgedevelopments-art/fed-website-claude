@@ -36,7 +36,7 @@ shared/                   # Types used by both client & server
 The routing system is powered by React Router 6:
 
 - `client/pages/Index.tsx` represents the home page.
-- Routes are defined in `client/App.tsx` using the `react-router-dom` import
+- Routes are defined in `client/AppRoutes.tsx`; each route also needs an entry in `PAGE_META` (`client/lib/seo.ts`) so it gets its title/description, is pre-rendered at build time (`scripts/prerender.mjs`), and is listed in the sitemap
 - Route files are located in the `client/pages/` directory
 
 For example, routes can be defined with:
@@ -143,7 +143,7 @@ const data: MyRouteResponse = await response.json();
 
 ### New Page Route
 1. Create component in `client/pages/MyPage.tsx`
-2. Add route in `client/App.tsx`:
+2. Add route in `client/AppRoutes.tsx` and its title/description in `PAGE_META` (`client/lib/seo.ts`):
 ```typescript
 <Route path="/my-page" element={<MyPage />} />
 ```

@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import { Industries } from "@/components/Industries";
 import { CTA } from "@/components/home/CTA";
 import { usePageMeta } from "@/hooks/use-page-meta";
+import { PAGE_META } from "@/lib/seo";
 
 type Action = { label: string; href: string; primary?: boolean };
 
@@ -181,7 +182,7 @@ function OfferingsSection() {
 
 /* ── Page ───────────────────────────────────────────────── */
 export default function Services() {
-  usePageMeta("Services", "Custom Solutions, AutoTowing, and AutoScaping. Software and automation built for towing companies, landscapers, and service businesses.");
+  usePageMeta(PAGE_META["/services"]);
   return (
     <div className="min-h-screen bg-black font-inter">
       <Navigation />

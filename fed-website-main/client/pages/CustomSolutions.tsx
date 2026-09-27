@@ -19,6 +19,7 @@ import iconPainChart from "@/assets/icon-pain-chart.png";
 import iconPainPerson from "@/assets/icon-pain-person.png";
 import iconPainHourglass from "@/assets/icon-pain-hourglass.png";
 import { usePageMeta } from "@/hooks/use-page-meta";
+import { PAGE_META } from "@/lib/seo";
 
 
 
@@ -169,7 +170,7 @@ const processSteps = [
 ];
 
 export default function CustomSolutions() {
-  usePageMeta("Custom Solutions", "Pricing calculators, automated workflows, client portals, and integrations built around how your business actually runs.");
+  usePageMeta(PAGE_META["/services/custom-solutions"]);
   return (
     <div className="min-h-screen bg-black font-inter">
       <Navigation />

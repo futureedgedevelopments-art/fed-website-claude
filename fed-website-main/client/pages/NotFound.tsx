@@ -4,12 +4,11 @@ import Navigation from "@/components/Navigation";
 import GreenDots from "@/components/GreenDots";
 import Footer from "@/components/Footer";
 import { usePageMeta } from "@/hooks/use-page-meta";
+import { NOT_FOUND_META } from "@/lib/seo";
 
 export default function NotFound() {
   const location = useLocation();
-  usePageMeta("Page Not Found", "This page doesn't exist. Head back home or get in touch with Future Edge Developments.", {
-    noindex: true,
-  });
+  usePageMeta(NOT_FOUND_META);
 
   useEffect(() => {
     console.error("404 Error: User attempted to access non-existent route:", location.pathname);

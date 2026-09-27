@@ -10,6 +10,8 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { usePageMeta } from "@/hooks/use-page-meta";
+import { FAQS as faqs } from "@/lib/faqs";
+import { PAGE_META } from "@/lib/seo";
 
 /* ── Contact details ────────────────────────────────────── */
 const CONTACT_EMAIL = "info@futureedgedev.com";
@@ -301,24 +303,6 @@ function NextStepsSection() {
 }
 
 /* ── FAQ ────────────────────────────────────────────────── */
-const faqs = [
-  {
-    q: "What kinds of businesses do you work with?",
-    a: "Field-service and small businesses like towing, property care, detailing, and junk removal that are ready to stop doing everything by hand and start growing with real systems behind them.",
-  },
-  {
-    q: "How quickly will I hear back?",
-    a: `We reply to every message within 24 hours. Need something right now? Call us at ${CONTACT_PHONE}.`,
-  },
-  {
-    q: "Is the strategy call really free?",
-    a: "Yes. It's a free 30-minute, no-pressure conversation to see where automation can make the biggest difference for you. If we're not a fit, we'll tell you.",
-  },
-  {
-    q: "Do I need to be technical?",
-    a: "Not at all. We handle the build, the integrations, and the setup. You just tell us how your business runs.",
-  },
-];
 
 function FaqSection() {
   return (
@@ -349,7 +333,7 @@ function FaqSection() {
 
 /* ── Page ───────────────────────────────────────────────── */
 export default function Contact() {
-  usePageMeta("Contact", "Book a free 30-minute strategy call or send us a message. We reply within 24 hours.");
+  usePageMeta(PAGE_META["/contact"]);
   useGhlEmbedScript();
   const [calendar, setCalendar] = useState<CalendarKey>("strategy");
   const bookingRef = useRef<HTMLElement>(null);

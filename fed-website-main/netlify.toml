@@ -16,9 +16,10 @@ from = "/api/*"
 status = 200
 to = "/.netlify/functions/api/:splat"
 
-# SPA fallback: serve index.html for client-side routes like /contact
-# (not forced, so real files in dist/spa are still served first)
+# Every real page is pre-rendered to its own index.html at build time
+# (scripts/prerender.mjs), so anything that doesn't match a file is a
+# genuine 404. Not forced, so real files are always served first.
 [[redirects]]
 from = "/*"
-to = "/index.html"
-status = 200
+to = "/404.html"
+status = 404
