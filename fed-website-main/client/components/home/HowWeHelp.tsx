@@ -27,7 +27,7 @@ const services: Service[] = [
       />
     ),
     active: true,
-    cta: { label: "Talk to us", href: "/contact", external: false },
+    cta: { label: "See Custom Solutions", href: "/services/custom-solutions", external: false },
   },
   {
     title: "AUTOTOWING",
