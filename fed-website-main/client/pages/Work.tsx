@@ -121,9 +121,9 @@ const moreBuilds = [
   },
   {
     industry: "Auto Detailing",
-    title: "Two years and counting",
+    title: "From a website to the whole lead flow",
     Icon: Users,
-    text: "Our longest client relationship. Started with a website, now runs his entire lead flow through our system, and has referred multiple clients to us.",
+    text: "Started with a website. Now every lead runs through the system we built, and he has sent multiple new clients our way.",
   },
 ];
 
